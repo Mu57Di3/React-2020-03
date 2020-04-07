@@ -2,7 +2,8 @@ import { isNumber } from "./tools";
 import * as _ from "lodash";
 
 export type EnumTypes = "Number" | "Operator" | "Quote";
-const postfixOperators = ["!", "**"];
+export const postfixOperators = ["!", "**"];
+export const binOperators = ["+", "-", "/", "*", "^"];
 type States = "Start" | "Run" | "Number" | "Quote" | "QuoteClose" | "Operator";
 
 /**
@@ -10,23 +11,29 @@ type States = "Start" | "Run" | "Number" | "Quote" | "QuoteClose" | "Operator";
  */
 export class Token {
     type: EnumTypes = "Number";
-    value: number | string = "";
-    children: Array<object> = [];
+    number = 0;
+    operator = "";
+    children: Array<Token> = [];
     separated?: boolean = false;
+    constructor(type?: EnumTypes, value?: number, operator?: string) {
+        this.type = type || "Number";
+        this.number = value || 0;
+        this.operator = operator || "";
+    }
 }
 
 /**
  * Машина рабора строки на дерево токенов.
  */
 export class Machine {
-    tree: Array<object> = [];
+    tree: Array<Token> = [];
     state: States = "Start";
 
     /**
      * Запускает токенизацию.
      * @param command - считанная скрока команды
      */
-    run(command: string): Array<object> {
+    run(command: string): Array<Token> {
         this.tree = [];
         this.state = "Start";
         //const prepareCommand: string = command.toLocaleLowerCase().replace(/\s+/g, "");
@@ -38,17 +45,17 @@ export class Machine {
      * Автомат формирующий дерево токенов
      * @param symbolsArray
      */
-    parse(symbolsArray: Array<string>): Array<object> {
+    parse(symbolsArray: Array<string>): Array<Token> {
         const linkArray: Array<Array<object>> = [this.tree];
         symbolsArray.forEach((token: string): void => {
             const newTokenObject = new Token();
             const currentLink = _.last(linkArray);
             const lastAdded: Token | null = (_.last(currentLink) as Token) || null;
-            this.setState(token, lastAdded ? lastAdded.value : null);
+            this.setState(token, lastAdded ? lastAdded.number || lastAdded.operator : null);
             newTokenObject.type = this.getType(token);
             switch (this.state) {
                 case "Quote":
-                    newTokenObject.value = "(";
+                    newTokenObject.operator = "(";
                     (currentLink as Array<object>).push(newTokenObject);
                     linkArray.push((_.last(currentLink) as Token).children);
                     break;
@@ -57,17 +64,25 @@ export class Machine {
                     break;
                 case "Number":
                     if (lastAdded && lastAdded.type === "Number") {
-                        lastAdded.value += token;
+                        lastAdded.number = parseFloat(String(lastAdded.number) + token);
+                        if (lastAdded.operator === "-") {
+                            lastAdded.number *= -1;
+                            lastAdded.operator = "";
+                        }
                     } else {
-                        newTokenObject.value = token;
+                        if (token === "-") {
+                            newTokenObject.operator = "-";
+                        } else {
+                            newTokenObject.number = parseFloat(token);
+                        }
                         (currentLink as Array<object>).push(newTokenObject);
                     }
                     break;
                 case "Operator":
                     if (lastAdded && !lastAdded.separated && lastAdded.type === "Operator") {
-                        lastAdded.value += token;
+                        lastAdded.operator += token;
                     } else {
-                        newTokenObject.value = token;
+                        newTokenObject.operator = token;
                         (currentLink as Array<object>).push(newTokenObject);
                     }
                     break;
