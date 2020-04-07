@@ -2,7 +2,7 @@ import { MathOperations, getOperatorsByPriority } from "../src/lesson_2/math";
 
 describe("Набот тестов математических операторов", () => {
     it("сложение", () => {
-        expect(MathOperations["+"](20, 2)).toBe(4);
+        expect(MathOperations["+"](20, 2)).toBe(22);
     });
     it("вычитание", () => {
         expect(MathOperations["-"](2, 7)).toBe(-5);
@@ -18,6 +18,10 @@ describe("Набот тестов математических оператор�
     });
     it("квадрат", () => {
         expect(MathOperations["**"](3)).toBe(9);
+    });
+    it("Факториал", () => {
+        expect(MathOperations["!"](1)).toBe(1);
+        expect(MathOperations["!"](5)).toBe(120);
     });
 });
 
