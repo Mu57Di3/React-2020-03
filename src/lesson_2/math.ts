@@ -1,5 +1,8 @@
 import * as _ from "lodash";
-export const OperatorPriority = {
+
+export type ScalarOperationType = (val1: number, val212: number) => number;
+
+export const OperatorPriority: { [key: string]: number } = {
     "+": 4,
     "-": 4,
     "*": 3,
@@ -19,23 +22,35 @@ export const getOperatorsByPriority = (priority: number): Array<string> => {
         .value();
 };
 
-export const MathOperations = {
-    "*": (val1: number, val2: number): number => {
-        return val1 * val2;
+const factorial: ScalarOperationType = (val: number): number => {
+    return val != 1 ? val * factorial(val - 1, 1) : 1;
+};
+
+export const MathOperations: { [key: string]: ScalarOperationType } = {
+    "*": (val1, val2) => {
+        return val1 * (val2 || 1);
     },
-    "/": (val1: number, val2: number): number => {
-        return val1 / val2;
+
+    "/": (val1, val2) => {
+        return val1 / (val2 || 1);
     },
+
     "-": (val1: number, val2: number): number => {
         return val1 - val2;
     },
     "+": (val1: number, val2: number): number => {
         return val1 + val2;
     },
+
     "^": (val1: number, val2: number): number => {
         return Math.pow(val1, val2);
     },
+
     "**": (val: number): number => {
         return Math.pow(val, 2);
+    },
+
+    "!": (val: number): number => {
+        return factorial(val, 1);
     },
 };
