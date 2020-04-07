@@ -28,8 +28,8 @@ describe("Тест калькулятора", () => {
         expect(Calc(tree).number).toBe(25);
     });
 
-    it("(2 *(3+1) )^ 3 +-5", () => {
-        const tree = parser.run("(2 *(3+1) )^ 3 +-5");
+    it("(2 *(3+1))^ 3 +-5", () => {
+        const tree = parser.run("(2 *(3+1))^ 3 +-5");
         expect(Calc(tree).number).toBe(507);
     });
 
@@ -38,5 +38,10 @@ describe("Тест калькулятора", () => {
         expect(() => {
             Calc(tree);
         }).toThrow(TypeError("Ошибка в выражении возможно пропущен пробел между операциями."));
+    });
+
+    it("2! +11", () => {
+        const tree = parser.run("2! +11");
+        expect(Calc(tree).number).toBe(13);
     });
 });
