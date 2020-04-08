@@ -8,7 +8,9 @@
         "build": "npx webpack --mode=development",
         "production": "npx webpack --mode=production",
         "lint": "npx eslint --ext .js,.jsx,.ts,.tsx --fix src/",
-        "test": "npx jest"
+        "test": "npx jest",
+        "lesson_2": "npx ts-node src/lesson_2",
+        "lesson_2 polish": "npx ts-node src/lesson_2 -polish"
     },
     "repository": {
         "type": "git",
@@ -27,6 +29,7 @@
     },
     "devDependencies": {
         "@babel/core": "^7.9.0",
+        "@babel/plugin-proposal-class-properties": "^7.8.3",
         "@babel/preset-env": "^7.9.0",
         "@babel/preset-react": "^7.9.4",
         "@babel/preset-typescript": "^7.9.0",
@@ -43,10 +46,14 @@
         "husky": "^4.2.3",
         "jest": "^25.2.4",
         "prettier": "^2.0.2",
+        "ts-node": "^8.8.2",
         "typescript": "^3.8.3",
         "webpack": "^4.42.1",
         "webpack-cli": "^3.3.11",
         "webpack-dev-server": "^3.10.3",
         "yargs": "^15.3.1"
+    },
+    "dependencies": {
+        "@types/lodash": "^4.14.149"
     }
 }
