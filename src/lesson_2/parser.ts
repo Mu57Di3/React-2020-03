@@ -15,7 +15,7 @@ export class Token {
     operator = "";
     children: Array<Token> = [];
     separated?: boolean = false;
-    constructor(type?: EnumTypes, value?: number, operator?: string) {
+    constructor(type?: EnumTypes, value?: number | null, operator?: string | null) {
         this.type = type || "Number";
         this.number = value || 0;
         this.operator = operator || "";
