@@ -9,7 +9,8 @@
         "production": "npx webpack --mode=production",
         "lint": "npx eslint --ext .js,.jsx,.ts,.tsx --fix src/",
         "test": "npx jest",
-        "lesson_2": "npx ts-node src/lesson_2"
+        "lesson_2": "npx ts-node src/lesson_2",
+        "lesson_2 polish": "npx ts-node src/lesson_2 -polish"
     },
     "repository": {
         "type": "git",
