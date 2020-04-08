@@ -17,11 +17,11 @@ describe("Набот тестов математических оператор�
         expect(MathOperations["^"](3, 7)).toBe(2187);
     });
     it("квадрат", () => {
-        expect(MathOperations["**"](3)).toBe(9);
+        expect(MathOperations["**"](3, 1)).toBe(9);
     });
     it("Факториал", () => {
-        expect(MathOperations["!"](1)).toBe(1);
-        expect(MathOperations["!"](5)).toBe(120);
+        expect(MathOperations["!"](1, 1)).toBe(1);
+        expect(MathOperations["!"](5, 1)).toBe(120);
     });
 });
 
