@@ -1,6 +1,6 @@
 import * as _ from "lodash";
 
-export type ScalarOperationType = (val1: number, val212: number) => number;
+export type ScalarOperationType = (val1: number, val2: number) => number;
 
 export const OperatorPriority: { [key: string]: number } = {
     "+": 4,
