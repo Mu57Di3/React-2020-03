@@ -1,5 +1,6 @@
 import * as _ from "lodash";
 import { Machine, Token, postfixOperators, binOperators } from "./parser";
+import { ShuntingYard } from "./shunting_yard";
 import { getOperatorsByPriority, MathOperations } from "./math";
 
 export const Calc = (tree: Array<Token>, priority = 1): Token => {
@@ -53,6 +54,28 @@ export const Calc = (tree: Array<Token>, priority = 1): Token => {
     }
 };
 
+export const PolishCalc = (tree: Array<Token>): Token => {
+    const stack: Array<Token> = [];
+    tree.forEach((token: Token): void => {
+        if (token.type === "Number") {
+            stack.push(token);
+        } else if (token.type === "Operator") {
+            if (postfixOperators.includes(token.operator)) {
+                const par: Token = stack.pop() || new Token();
+                stack.push(new Token("Number", MathOperations[token.operator](par.number, 1)));
+            } else {
+                if (stack.length < 2) {
+                    throw new Error("Ошибка в выражении");
+                }
+                const par1: Token = stack.pop() || new Token();
+                const par2: Token = stack.pop() || new Token();
+                stack.push(new Token("Number", MathOperations[token.operator](par2.number, par1.number)));
+            }
+        }
+    });
+    return stack.pop() || new Token();
+};
+
 export const actor = (query: string): number => {
     if (!query.length) {
         throw new Error("Введите выражение.");
@@ -64,6 +87,22 @@ export const actor = (query: string): number => {
     }
     try {
         return Calc(tree).number;
+    } catch (e) {
+        throw new Error(e.message);
+    }
+};
+
+export const polishActor = (query: string): number => {
+    if (!query.length) {
+        throw new Error("Введите выражение.");
+    }
+
+    const tree = ShuntingYard(query);
+    if (!tree.length) {
+        throw new Error("Ошибка в выражении");
+    }
+    try {
+        return PolishCalc(tree).number;
     } catch (e) {
         throw new Error(e.message);
     }
