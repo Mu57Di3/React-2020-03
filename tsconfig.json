@@ -12,7 +12,8 @@
       "node",
       "jest",
       "react",
-      "react-dom"
+      "react-dom",
+      "enzyme"
     ]
   },
   "include": [
