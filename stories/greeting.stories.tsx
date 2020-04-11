@@ -8,6 +8,6 @@ export default {
 };
 
 export const greet: React.FC<{}> = () => {
-    const name = text("User name", "Bender");
+    const name = text("User name", "Бендер");
     return <Greeting username={name} />;
 };
