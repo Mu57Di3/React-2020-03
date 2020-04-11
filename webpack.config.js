@@ -1,5 +1,4 @@
 const argv = require("yargs").argv;
-const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const path = require("path");
@@ -9,6 +8,9 @@ const isProduction = argv.mode === "production";
 const config = {
     context: path.resolve(__dirname, "./src"),
     entry: "./index.tsx",
+    resolve: {
+        extensions: [".js", ".jsx", ".ts", ".tsx", ".json"],
+    },
     output: {
         path: path.resolve(__dirname, "./dist"),
         filename: "index.js",
@@ -38,9 +40,5 @@ const config = {
         }),
     ],
 };
-
-if (!isProduction) {
-    config.plugins.push(new webpack.HotModuleReplacementPlugin());
-}
 
 module.exports = config;
