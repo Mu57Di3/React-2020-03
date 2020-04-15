@@ -6,6 +6,23 @@
     "jsx": "react",
     "sourceMap": true,
     "strict": true,
-    "esModuleInterop": true
-  }
+    "esModuleInterop": true,
+    "types": [
+      "lodash",
+      "node",
+      "jest",
+      "react",
+      "react-dom",
+      "enzyme"
+    ]
+  },
+  "include": [
+    "src/**/*",
+    "tests/**/*",
+    "stories/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "./*.js"
+  ]
 }
