@@ -66,53 +66,32 @@ class ToDoApp extends React.Component<{}, State> {
         });
     }
 
-    public render(): React.ReactNode {
+    private getTasksCard(state: States, title: string): React.ReactNode {
         const { list } = this.state;
+        return (
+            <div className="card">
+                <div className="card-header">{title}</div>
+                <div className="card-body">
+                    <TasksList
+                        list={list}
+                        click={this.setStateHandler}
+                        filter={state}
+                        cancel={this.cancelTaskHandler}
+                    />
+                </div>
+            </div>
+        );
+    }
 
+    public render(): React.ReactNode {
         return (
             <div className="row  bg-light pt-3 pb-3">
                 <div className="col-12">
                     <AddTask add={this.addTaskHandler} />
                 </div>
-                <div className="col-12 pb-2">
-                    <div className="card">
-                        <div className="card-header">Активные задачи</div>
-                        <div className="card-body">
-                            <TasksList
-                                list={list}
-                                click={this.setStateHandler}
-                                filter={States.Active}
-                                cancel={this.cancelTaskHandler}
-                            />
-                        </div>
-                    </div>
-                </div>
-                <div className="col-12 pb-2">
-                    <div className="card">
-                        <div className="card-header">Отложенные задачи</div>
-                        <div className="card-body">
-                            <TasksList
-                                list={list}
-                                click={this.setStateHandler}
-                                filter={States.Canceled}
-                                cancel={this.cancelTaskHandler}
-                            />
-                        </div>
-                    </div>
-                </div>
-                <div className="col-12">
-                    <div className="card">
-                        <div className="card-header">Выполненные</div>
-                        <div className="card-body">
-                            <TasksList
-                                list={list}
-                                click={this.setStateHandler}
-                                filter={States.Complete}
-                                cancel={this.cancelTaskHandler}
-                            />
-                        </div>
-                    </div>
-                </div>
+                <div className="col-12 pb-2">{this.getTasksCard(States.Active, "Активные задачи")}</div>
+                <div className="col-12 pb-2">{this.getTasksCard(States.Canceled, "Отложенные задачи")}</div>
+                <div className="col-12">{this.getTasksCard(States.Complete, "Выполненные")}</div>
             </div>
         );
     }
