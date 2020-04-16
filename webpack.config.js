@@ -1,8 +1,8 @@
 const argv = require("yargs").argv;
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
+const rules = require("./webpack.riles");
 
 const isProduction = argv.mode === "production";
 
@@ -27,22 +27,15 @@ const config = {
     mode: isProduction ? "production" : "development",
     module: {
         rules: [
+            ...rules,
             {
-                test: /\.(js|ts)x?$/,
-                exclude: /(node_modules|bower_components)/,
-                loader: "babel-loader",
-            },
-            {
-                test: /\.css$/i,
-                use: [MiniCssExtractPlugin.loader, "css-loader"],
+                test: /\.css$/,
+                use: ["style-loader", "css-loader"],
             },
         ],
     },
     plugins: [
         new CleanWebpackPlugin(),
-        new MiniCssExtractPlugin({
-            filename: "style.css",
-        }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "./public/index.html"),
         }),
