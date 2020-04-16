@@ -2,18 +2,15 @@ import React from "react";
 import { select, text, boolean, withKnobs } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fas } from "@fortawesome/free-solid-svg-icons";
 import TaskRow from "../src/components/TaskRow";
 import { Task, States, ButtonColors } from "../src/constants/ToDo";
 import TasksList from "../src/containers/TasksList";
 import StateBtn from "../src/components/StateBtn";
 import ToDoApp from "../src/containers/ToDoApp";
 import AddTask from "../src/components/AddTask";
+import { registerIcons } from "../src/tools";
 
-library.add(fab, far, fas);
+registerIcons();
 
 export default {
     title: "ToDo app",
