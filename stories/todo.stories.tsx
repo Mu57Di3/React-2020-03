@@ -6,7 +6,7 @@ import TaskRow from "../src/components/TaskRow";
 import { Task, States, ButtonColors } from "../src/constants/ToDo";
 import TasksList from "../src/containers/TasksList";
 import StateBtn from "../src/components/StateBtn";
-import ToDoApp from "../src/containers/ToDoApp";
+import { ToDoApp } from "../src/containers/ToDoApp";
 import AddTask from "../src/components/AddTask";
 import { registerIcons } from "../src/tools";
 

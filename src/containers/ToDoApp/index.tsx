@@ -1,1 +1,1 @@
-export { default } from "./ToDoApp";
+export * from "./ToDoApp";
