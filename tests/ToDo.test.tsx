@@ -7,6 +7,7 @@ import TaskRow from "../src/components/TaskRow";
 import TasksList from "../src/containers/TasksList";
 import { ToDoApp } from "../src/containers/ToDoApp";
 import AddTask from "../src/components/AddTask";
+import { getOffsetString } from "../src/components/Ticker";
 
 registerIcons();
 
@@ -73,5 +74,11 @@ describe("Контейнер приложения", () => {
         const app = mount(<ToDoApp />);
         app.find(AddTask).prop("add")("Test");
         expect(global.window.document.title).toBe("1 активных заданий");
+    });
+});
+
+describe("Компонента  Ticker", () => {
+    it("Функция смещения строки", () => {
+        expect(getOffsetString("Test", 1, 10)).toBe("est      T");
     });
 });

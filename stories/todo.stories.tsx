@@ -9,6 +9,7 @@ import StateBtn from "../src/components/StateBtn";
 import { ToDoApp } from "../src/containers/ToDoApp";
 import AddTask from "../src/components/AddTask";
 import { registerIcons } from "../src/tools";
+import { Ticker } from "../src/components/Ticker";
 
 registerIcons();
 
@@ -89,4 +90,15 @@ export const TodoAppContaner: React.FC<{}> = () => {
             </div>
         </div>
     );
+};
+
+export const TickerContaner: React.FC<{}> = () => {
+    const textParam = text("Текст бегущей строки", "abcdefghijklmop");
+    const speedOptions = {
+        Медленно: 3000,
+        Средне: 1000,
+        Быстро: 400,
+    };
+    const timeout = select("Скорость", speedOptions, speedOptions.Средне);
+    return <Ticker text={textParam} timeout={timeout}/>;
 };
