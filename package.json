@@ -74,8 +74,10 @@
     "@fortawesome/free-regular-svg-icons": "^5.13.0",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/react-fontawesome": "^0.1.9",
+    "@types/classnames": "^2.2.10",
     "@types/lodash": "^4.14.149",
     "bootstrap": "^4.4.1",
+    "classnames": "^2.2.6",
     "lodash": "^4.17.15",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
