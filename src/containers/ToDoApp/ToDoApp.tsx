@@ -83,6 +83,22 @@ class ToDoApp extends React.Component<{}, State> {
         );
     }
 
+    componentDidMount(): void {
+        this.updateTitle();
+    }
+
+    componentDidUpdate(): void {
+        this.updateTitle();
+    }
+
+    updateTitle(): void {
+        const { list } = this.state;
+        const activeCount = list.filter((item) => {
+            return item.state === States.Active;
+        }).length;
+        document.title = ` ${activeCount || 0} активных заданий`;
+    }
+
     public render(): React.ReactNode {
         return (
             <div className="row  bg-light pt-3 pb-3">
@@ -97,4 +113,4 @@ class ToDoApp extends React.Component<{}, State> {
     }
 }
 
-export default ToDoApp;
+export { ToDoApp };

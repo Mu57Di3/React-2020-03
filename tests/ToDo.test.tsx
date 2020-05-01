@@ -1,10 +1,13 @@
 import React from "react";
-import { render, shallow } from "enzyme";
+import { mount, render, shallow } from "enzyme";
 import { ButtonColors, States, Task } from "../src/constants/ToDo";
 import StateBtn from "../src/components/StateBtn";
 import { registerIcons } from "../src/tools";
 import TaskRow from "../src/components/TaskRow";
 import TasksList from "../src/containers/TasksList";
+import { ToDoApp } from "../src/containers/ToDoApp";
+import AddTask from "../src/components/AddTask";
+import { getOffsetString } from "../src/components/Ticker";
 
 registerIcons();
 
@@ -58,5 +61,24 @@ describe("Компонент TasksList", () => {
     it("Empty list", () => {
         const item = render(<TasksList list={tasks} click={clickMock} filter={1000} cancel={clickMock} />);
         expect(item.text()).toBe("Нет задач");
+    });
+});
+
+describe("Контейнер приложения", () => {
+    it("Обновление заголовка", () => {
+        const app = mount(<ToDoApp />);
+        expect(global.window.document.title).toBe("0 активных заданий");
+    });
+
+    it("Добавление задания", () => {
+        const app = mount(<ToDoApp />);
+        app.find(AddTask).prop("add")("Test");
+        expect(global.window.document.title).toBe("1 активных заданий");
+    });
+});
+
+describe("Компонента  Ticker", () => {
+    it("Функция смещения строки", () => {
+        expect(getOffsetString("Test", 1, 10)).toBe("est      T");
     });
 });
