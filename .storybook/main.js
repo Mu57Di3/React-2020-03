@@ -8,11 +8,11 @@ module.exports = {
     addons: ["@storybook/addon-actions", "@storybook/addon-links", "@storybook/addon-knobs/register"],
     webpackFinal: (config) => {
         config.plugins.push(new webpack.HotModuleReplacementPlugin());
-
         return {
             ...config,
             resolve: {
                 extensions: custom.resolve.extensions,
+                alias: custom.resolve.alias
             },
             module: {
                 ...config.module,

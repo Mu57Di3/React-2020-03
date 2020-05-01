@@ -13,8 +13,15 @@
       "jest",
       "react",
       "react-dom",
-      "enzyme"
-    ]
+      "enzyme",
+      "jsdom",
+      "classnames"
+    ],
+    "baseUrl": "./",
+    "paths": {
+      "Constants/*": ["src/constants/*"],
+      "UI": ["src/ui/index"]
+    }
   },
   "include": [
     "src/**/*",
