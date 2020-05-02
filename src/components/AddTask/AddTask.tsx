@@ -31,7 +31,7 @@ const AddTask: React.FC<Props> = ({ add }) => {
                 onKeyUp={keyUpHandler}
             />
             <div className="input-group-append">
-                <button className="btn btn-outline-secondary" type="button" id="button-addon2" onClick={addHandler}>
+                <button className="btn btn-outline-secondary" type="button" onClick={addHandler}>
                     <FontAwesomeIcon icon={["fas", "plus-circle"]} />
                 </button>
             </div>
