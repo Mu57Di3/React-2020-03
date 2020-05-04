@@ -2,8 +2,9 @@ import React from "react";
 import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button, ButtonGroup, LinkButton } from "UI";
+import { Button, ButtonGroup, Input, LinkButton } from "UI";
 import { ButtonTypes } from "Constants/ui";
+import { useRef } from "@storybook/addons";
 
 export default {
     title: "Компоненты UI",
@@ -63,4 +64,17 @@ export const UIButton: React.FC<{}> = () => {
             </div>
         </>
     );
+};
+
+export const UIInput: React.FC<{}> = () => {
+    const ref = useRef(null);
+    const typeOptions = {
+        text: "text",
+        number: "number",
+        date: "date",
+        color: "color",
+        password: "password",
+    };
+    const type = select("Тип контрола", typeOptions, "text");
+    return <Input onChange={action("change")} type={type} ref={ref} />;
 };

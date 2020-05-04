@@ -1,3 +1,5 @@
+import React, { ReactNode } from "react";
+
 /**
  * Размеры контролов формы
  */
@@ -34,9 +36,15 @@ export enum ButtonTypes {
     "link" = "btn btn-link",
 }
 
+export type InputTypes = "text" | "number" | "date" | "color" | "password";
+
 /**
  * Базовый интерфейс для компонентов
  */
 export interface BaseProps {
-    children?: string;
+    children?: ReactNode;
+    forwardedRef?:
+        | ((instance: HTMLInputElement | null) => void)
+        | React.MutableRefObject<HTMLInputElement | null>
+        | null;
 }
