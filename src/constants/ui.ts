@@ -22,6 +22,18 @@ export enum TextColors {
 }
 
 /**
+ * Цвета кнопок класс bootstrap
+ */
+export enum ButtonColors {
+    red = "text-danger",
+    blue = "text-primary",
+    gray = "text-secondary",
+    green = "text-success",
+    yellow = "text-warning",
+    black = "text-dark",
+}
+
+/**
  * Тип кнопок
  */
 export enum ButtonTypes {

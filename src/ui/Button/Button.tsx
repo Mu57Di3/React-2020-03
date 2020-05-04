@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { BaseProps, ButtonTypes } from "Constants/ui";
+import { BaseProps, ButtonTypes, ButtonColors } from "Constants/ui";
 
 interface ButtonProps extends BaseProps {
     type?: ButtonTypes;
@@ -10,11 +10,7 @@ interface ButtonProps extends BaseProps {
     lg?: boolean;
     outline?: boolean;
     submit?: boolean;
-}
-
-interface LinkButtonProps extends BaseProps {
-    onClick?: () => void;
-    disabled?: boolean;
+    textColor?: ButtonColors;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -26,6 +22,7 @@ const Button: React.FC<ButtonProps> = ({
     lg = false,
     outline = false,
     submit = false,
+    textColor,
 }) => {
     const onClickHandler = (): void => {
         if (onClick) {
@@ -38,20 +35,13 @@ const Button: React.FC<ButtonProps> = ({
         outline ? type.replace("btn-", "btn-outline-") : type,
         { "btn-sm": !!sm },
         { "btn-lg": !!lg },
+        textColor || "",
     ]);
 
     return (
         <button className={style} disabled={disabled} type={submit ? "submit" : "button"} onClick={onClickHandler}>
             {children}
         </button>
-    );
-};
-
-const LinkButton: React.FC<LinkButtonProps> = ({ children, ...otherProps }) => {
-    return (
-        <Button type={ButtonTypes.link} {...otherProps}>
-            {children}
-        </Button>
     );
 };
 
@@ -62,5 +52,13 @@ const ButtonGroup: React.FC<{}> = ({ children }) => {
         </div>
     );
 };
+
+function withSetType<T extends ButtonProps>(Component: React.ComponentType<T>, type: ButtonTypes) {
+    return function SetTypeWrapper(props: T) {
+        return <Component type={type} {...props} />;
+    };
+}
+
+const LinkButton = withSetType(Button, ButtonTypes.link);
 
 export { Button, LinkButton, ButtonGroup };
