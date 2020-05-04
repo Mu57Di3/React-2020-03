@@ -8,6 +8,8 @@ interface ButtonProps extends BaseProps {
     disabled?: boolean;
     sm?: boolean;
     lg?: boolean;
+    outline?: boolean;
+    submit?: boolean;
 }
 
 interface LinkButtonProps extends BaseProps {
@@ -22,6 +24,8 @@ const Button: React.FC<ButtonProps> = ({
     disabled,
     sm = false,
     lg = false,
+    outline = false,
+    submit = false,
 }) => {
     const onClickHandler = (): void => {
         if (onClick) {
@@ -29,10 +33,15 @@ const Button: React.FC<ButtonProps> = ({
         }
     };
 
-    const style = classNames(["btn", type, { "btn-sm": !!sm }, { "btn-lg": !!lg }]);
+    const style = classNames([
+        "btn",
+        outline ? type.replace("btn-", "btn-outline-") : type,
+        { "btn-sm": !!sm },
+        { "btn-lg": !!lg },
+    ]);
 
     return (
-        <button className={style} disabled={disabled} onClick={onClickHandler}>
+        <button className={style} disabled={disabled} type={submit ? "submit" : "button"} onClick={onClickHandler}>
             {children}
         </button>
     );
