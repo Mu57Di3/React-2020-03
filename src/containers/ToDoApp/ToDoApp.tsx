@@ -1,7 +1,7 @@
 import React from "react";
-import { States, Task } from "../../constants/ToDo";
-import AddTask from "../../components/AddTask";
-import TasksList from "../TasksList";
+import { States, Task } from "Constants/ToDo";
+import { AddTask } from "Components";
+import { TasksList } from "./components/";
 
 interface State {
     list: Task[];

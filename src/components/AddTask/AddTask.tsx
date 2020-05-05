@@ -36,4 +36,4 @@ const AddTask: React.FC<Props> = ({ add }) => {
     );
 };
 
-export default AddTask;
+export { AddTask };

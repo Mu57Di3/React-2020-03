@@ -1,13 +1,11 @@
 import React from "react";
 import { mount, render, shallow } from "enzyme";
-import { ButtonColors, States, Task } from "../src/constants/ToDo";
-import StateBtn from "../src/components/StateBtn";
+import { States, Task } from "Constants/ToDo";
 import { registerIcons } from "../src/tools";
-import TaskRow from "../src/components/TaskRow";
-import TasksList from "../src/containers/TasksList";
 import { ToDoApp } from "../src/containers/ToDoApp";
-import AddTask from "../src/components/AddTask";
-import { getOffsetString } from "../src/components/Ticker";
+import { AddTask, StateBtn, TaskRow, getOffsetString } from "Components";
+import { TasksList } from "../src/containers/ToDoApp/components/TasksList";
+import { ButtonColors } from "Constants/ui";
 
 registerIcons();
 

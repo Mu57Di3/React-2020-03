@@ -1,1 +1,1 @@
-export { default } from "./TaskRow";
+export * from "./TaskRow";

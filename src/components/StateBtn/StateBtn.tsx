@@ -31,4 +31,4 @@ const StateBtn: React.FC<Props> = ({ state, click, color = ButtonColors.blue, di
     );
 };
 
-export default StateBtn;
+export { StateBtn };

@@ -1,6 +1,7 @@
 import React from "react";
-import { ButtonColors, States } from "../../constants/ToDo";
-import StateBtn from "../StateBtn";
+import { States } from "Constants/ToDo";
+import { ButtonColors } from "Constants/ui";
+import { StateBtn } from "../StateBtn";
 import _ from "lodash";
 
 interface Props {
@@ -44,4 +45,4 @@ const TaskRow: React.FC<Props> = ({ id, label, state = States.Active, click, can
     );
 };
 
-export default TaskRow;
+export { TaskRow };

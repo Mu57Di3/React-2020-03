@@ -8,4 +8,4 @@ const Greeting: React.FC<Prop> = ({ username }) => {
     return <span>Доброго времени суток, {username || "Пользователь"}</span>;
 };
 
-export default Greeting;
+export { Greeting };

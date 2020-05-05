@@ -1,7 +1,7 @@
 import React from "react";
-import { Task, States } from "../../constants/ToDo";
-import TaskRow from "../../components/TaskRow";
+import { Task, States } from "Constants/ToDo";
 import _ from "lodash";
+import { TaskRow } from "Components";
 
 interface Props {
     list: Task[];
@@ -29,4 +29,4 @@ const TasksList: React.FC<Props> = ({ list, click, filter = null, cancel }) => {
     return <div className="row">{drawList.length ? drawList : <EmptyList />}</div>;
 };
 
-export default TasksList;
+export { TasksList };

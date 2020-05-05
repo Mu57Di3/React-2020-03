@@ -5,6 +5,7 @@ interface InputProps extends BaseProps {
     type?: InputTypes;
     value?: string;
     placeholder?: string;
+    required?: boolean;
 }
 
 function withSetType<T extends InputProps>(Component: React.ComponentType<T>, type: InputTypes) {
@@ -15,7 +16,7 @@ function withSetType<T extends InputProps>(Component: React.ComponentType<T>, ty
 
     // eslint-disable-next-line react/display-name
     return forwardRef((props, ref) => {
-        return <WrappedComponent forwardedRef={ref} />;
+        return <WrappedComponent forwardedRef={ref} {...props} />;
     });
 }
 
@@ -28,4 +29,10 @@ Input.displayName = "Input";
 const TextInput = withSetType(Input, "text");
 TextInput.displayName = "TextInput";
 
-export { Input, TextInput };
+const EmailInput = withSetType(Input, "email");
+EmailInput.displayName = "EmailInput";
+
+const PasswordInput = withSetType(Input, "password");
+PasswordInput.displayName = "PasswordInput";
+
+export { Input, TextInput, PasswordInput, EmailInput };
