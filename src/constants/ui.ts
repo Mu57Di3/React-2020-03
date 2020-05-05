@@ -48,7 +48,7 @@ export enum ButtonTypes {
     "link" = "btn btn-link",
 }
 
-export type InputTypes = "text" | "number" | "date" | "color" | "password";
+export type InputTypes = "text" | "number" | "date" | "color" | "password" | "email";
 
 /**
  * Базовый интерфейс для компонентов
