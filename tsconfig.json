@@ -20,7 +20,8 @@
     "baseUrl": "./",
     "paths": {
       "Constants/*": ["src/constants/*"],
-      "UI": ["src/ui/index"]
+      "UI": ["src/ui/index"],
+      "Components": ["src/components/index"]
     }
   },
   "include": [

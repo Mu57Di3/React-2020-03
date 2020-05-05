@@ -14,6 +14,7 @@ const config = {
         alias: {
             Constants: path.resolve(__dirname, "./src/constants"),
             UI: path.resolve(__dirname, "./src/ui/index.tsx"),
+            Components: path.resolve(__dirname, "./src/components/index.tsx"),
         },
     },
     output: {
