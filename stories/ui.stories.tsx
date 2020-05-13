@@ -2,8 +2,8 @@ import React from "react";
 import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button, ButtonGroup, Input, LinkButton } from "UI";
-import { ButtonTypes } from "Constants/ui";
+import { Button, ButtonGroup, EButton, EButtonGroup, ELinkButton, Input, LinkButton } from "UI";
+import { ButtonTypes, EButtonTypes } from "Constants/ui";
 import { useRef } from "@storybook/addons";
 
 export default {
@@ -60,6 +60,61 @@ export const UIButton: React.FC<{}> = () => {
                             4
                         </Button>
                     </ButtonGroup>
+                </div>
+            </div>
+        </>
+    );
+};
+
+export const EmotionButton: React.FC<{}> = () => {
+    const label = text("Label", "Go 🤟");
+    const disabled = boolean("Disabled", false);
+    const lg = boolean("Large", false);
+    const sm = boolean("Small", false);
+    const typesOptions = {
+        primary: EButtonTypes.primary,
+        secondary: EButtonTypes.secondary,
+        success: EButtonTypes.success,
+        danger: EButtonTypes.danger,
+        warning: EButtonTypes.warning,
+        info: EButtonTypes.info,
+        light: EButtonTypes.light,
+        dark: EButtonTypes.dark,
+        link: EButtonTypes.link,
+    };
+    const type = select("Type", typesOptions, EButtonTypes.primary);
+    const objProps: object = {
+        lg: lg,
+        sm: sm,
+    };
+    return (
+        <>
+            <div className="row">
+                <div className="col-auto">
+                    <EButton onClick={action("onClick")} type={type} disabled={disabled} {...objProps}>
+                        {label}
+                    </EButton>
+                    <ELinkButton onClick={action("onClick")} disabled={disabled} {...objProps}>
+                        {label}
+                    </ELinkButton>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-auto">
+                    <EButtonGroup>
+                        <EButton onClick={action("onClick1")} type={EButtonTypes.success}>
+                            1
+                        </EButton>
+                        <EButton onClick={action("onClick2")} type={EButtonTypes.dark}>
+                            2
+                        </EButton>
+                        <EButton onClick={action("onClick3")} type={EButtonTypes.warning}>
+                            3
+                        </EButton>
+                        <EButton onClick={action("onClick4")} type={EButtonTypes.link}>
+                            4
+                        </EButton>
+                    </EButtonGroup>
                 </div>
             </div>
         </>
