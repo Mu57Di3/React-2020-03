@@ -7,21 +7,12 @@
     "sourceMap": true,
     "strict": true,
     "esModuleInterop": true,
-    "types": [
-      "lodash",
-      "node",
-      "jest",
-      "react",
-      "react-dom",
-      "enzyme",
-      "jsdom",
-      "classnames"
-    ],
     "baseUrl": "./",
     "paths": {
       "Constants/*": ["src/constants/*"],
       "UI": ["src/ui/index"],
-      "Components": ["src/components/index"]
+      "Components": ["src/components/index"],
+      "@/*": ["src/*"]
     }
   },
   "include": [
