@@ -7,7 +7,7 @@ interface Props {
 }
 
 const LoginForm: React.FC<Props> = ({ submit }) => {
-    const submitLabel = "Зарегистрироваться";
+    const submitLabel = "Войти";
     const formConfig = [
         { type: InputTypes.email, name: "email", required: true, placeholder: "Введите email" },
         { type: InputTypes.password, name: "password", required: true, placeholder: "Введите пароль" },
