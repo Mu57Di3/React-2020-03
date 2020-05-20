@@ -11,6 +11,11 @@ const config = {
     entry: "./index.tsx",
     resolve: {
         extensions: [".js", ".jsx", ".ts", ".tsx", ".json"],
+        alias: {
+            Constants: path.resolve(__dirname, "./src/constants"),
+            UI: path.resolve(__dirname, "./src/ui/index.tsx"),
+            Components: path.resolve(__dirname, "./src/components/index.tsx"),
+        },
     },
     output: {
         path: path.resolve(__dirname, "./dist"),

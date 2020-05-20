@@ -2,14 +2,13 @@ import React from "react";
 import { select, text, boolean, withKnobs } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import "bootstrap/dist/css/bootstrap.min.css";
-import TaskRow from "../src/components/TaskRow";
-import { Task, States, ButtonColors } from "../src/constants/ToDo";
-import TasksList from "../src/containers/TasksList";
-import StateBtn from "../src/components/StateBtn";
+import { Task, States } from "Constants/ToDo";
 import { ToDoApp } from "../src/containers/ToDoApp";
-import AddTask from "../src/components/AddTask";
 import { registerIcons } from "../src/tools";
-import { Ticker } from "../src/components/Ticker";
+import { ButtonColors } from "Constants/ui";
+import { AddTask, LoginForm, StateBtn, TaskRow } from "Components";
+import { Ticker } from "Components";
+import { TasksList } from "../src/containers/ToDoApp/components/TasksList";
 
 registerIcons();
 
@@ -100,5 +99,17 @@ export const TickerContaner: React.FC<{}> = () => {
         Быстро: 400,
     };
     const timeout = select("Скорость", speedOptions, speedOptions.Средне);
-    return <Ticker text={textParam} timeout={timeout}/>;
+    return <Ticker text={textParam} timeout={timeout} />;
+};
+
+export const LoginFormComponent: React.FC<{}> = () => {
+    return (
+        <div className="container">
+            <div className="row justify-content-center">
+                <div className="col-6">
+                    <LoginForm submit={action("login")} />
+                </div>
+            </div>
+        </div>
+    );
 };

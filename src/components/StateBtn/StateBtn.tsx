@@ -1,12 +1,14 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ButtonColors, States } from "../../constants/ToDo";
+import { States } from "Constants/ToDo";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { LinkButton } from "UI";
+import { ButtonColors } from "Constants/ui";
 
 interface Props {
     state: States;
     click: () => void;
-    color?: string;
+    color?: ButtonColors;
     disabled?: boolean;
 }
 
@@ -23,10 +25,10 @@ const StateBtn: React.FC<Props> = ({ state, click, color = ButtonColors.blue, di
     };
     const classes = `btn btn-link ${color}`;
     return (
-        <button className={classes} disabled={disabled} onClick={clickHandler}>
+        <LinkButton textColor={color} disabled={disabled} onClick={clickHandler}>
             <FontAwesomeIcon icon={icons[state]} />
-        </button>
+        </LinkButton>
     );
 };
 
-export default StateBtn;
+export { StateBtn };

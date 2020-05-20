@@ -14,8 +14,15 @@
       "react",
       "react-dom",
       "enzyme",
-      "jsdom"
-    ]
+      "jsdom",
+      "classnames"
+    ],
+    "baseUrl": "./",
+    "paths": {
+      "Constants/*": ["src/constants/*"],
+      "UI": ["src/ui/index"],
+      "Components": ["src/components/index"]
+    }
   },
   "include": [
     "src/**/*",

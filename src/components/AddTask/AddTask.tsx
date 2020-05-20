@@ -1,5 +1,7 @@
 import React, { useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Button, TextInput } from "UI";
+import { ButtonTypes } from "Constants/ui";
 
 interface Props {
     add: (task: string) => void;
@@ -8,35 +10,30 @@ interface Props {
 const AddTask: React.FC<Props> = ({ add }) => {
     const taskLabel = useRef(null);
     const addHandler = (): void => {
-        const label = taskLabel.current.value || "";
+        const node = taskLabel.current || { value: "" };
+        const label = node.value || "";
         if (label.length) {
             add(label);
-            taskLabel.current.value = "";
+            node.value = "";
         }
     };
 
-    const keyUpHandler = (event: KeyboardEvent): void => {
-        if (event.key == "Enter") {
+    const keyUpHandler = (e: KeyboardEvent): void => {
+        if (e.key == "Enter") {
             addHandler();
         }
     };
 
     return (
         <div className="input-group mb-3">
-            <input
-                ref={taskLabel}
-                type="text"
-                className="form-control"
-                placeholder="Введите новую задачу"
-                onKeyUp={keyUpHandler}
-            />
+            <TextInput ref={taskLabel} placeholder="Введите новую задачу" onKeyUp={keyUpHandler} />
             <div className="input-group-append">
-                <button className="btn btn-outline-secondary" type="button" onClick={addHandler}>
+                <Button outline type={ButtonTypes.secondary} onClick={addHandler}>
                     <FontAwesomeIcon icon={["fas", "plus-circle"]} />
-                </button>
+                </Button>
             </div>
         </div>
     );
 };
 
-export default AddTask;
+export { AddTask };
