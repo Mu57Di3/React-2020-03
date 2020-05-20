@@ -8,7 +8,7 @@ interface InputProps extends BaseProps {
     required?: boolean;
 }
 
-function withSetType<T extends InputProps>(Component: React.ComponentType<T>, type: InputTypes) {
+function getInputByType<T extends InputProps>(Component: React.ComponentType<T>, type: InputTypes) {
     const WrappedComponent = (props: InputProps) => {
         const { forwardedRef, ...otherProps } = props;
         return <Component type={type} ref={forwardedRef} {...otherProps} />;
@@ -26,13 +26,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 });
 Input.displayName = "Input";
 
-const TextInput = withSetType(Input, "text");
+const TextInput = getInputByType(Input, InputTypes.text);
 TextInput.displayName = "TextInput";
 
-const EmailInput = withSetType(Input, "email");
+const EmailInput = getInputByType(Input, InputTypes.email);
 EmailInput.displayName = "EmailInput";
 
-const PasswordInput = withSetType(Input, "password");
+const PasswordInput = getInputByType(Input, InputTypes.password);
 PasswordInput.displayName = "PasswordInput";
 
-export { Input, TextInput, PasswordInput, EmailInput };
+export { Input, TextInput, PasswordInput, EmailInput, getInputByType };
