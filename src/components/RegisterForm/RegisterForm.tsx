@@ -1,23 +1,24 @@
 import React from "react";
-import { FormGenerator } from "UI";
 import { FormResultType, InputTypes } from "Constants/ui";
+import { FormGenerator } from "UI";
 
 interface Props {
-    submit?: (email: string, password: string) => void;
+    submit?: (name: string, email: string, password: string) => void;
 }
 
-const LoginForm: React.FC<Props> = ({ submit }) => {
+const RegisterForm: React.FC<Props> = ({ submit }) => {
     const submitLabel = "Зарегистрироваться";
     const formConfig = [
+        { type: InputTypes.text, name: "name", required: true, placeholder: "Введите Имя" },
         { type: InputTypes.email, name: "email", required: true, placeholder: "Введите email" },
         { type: InputTypes.password, name: "password", required: true, placeholder: "Введите пароль" },
     ];
     const submitHandler = (result: FormResultType): void => {
         if (submit) {
-            submit(result.email as string, result.password as string);
+            submit(result.name as string, result.email as string, result.password as string);
         }
     };
     return <FormGenerator controls={formConfig} onSubmit={submitHandler} submitLabel={submitLabel} />;
 };
 
-export { LoginForm };
+export { RegisterForm };
