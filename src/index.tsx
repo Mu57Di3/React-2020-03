@@ -1,21 +1,14 @@
 import React from "react";
 import { render } from "react-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { ToDoApp } from "./containers/ToDoApp";
 import { registerIcons } from "./tools";
-
+import { BrowserRouter as Router } from "react-router-dom";
+import { App } from "@/App";
 registerIcons();
 
-const App: React.FC<{}> = () => {
-    return (
-        <div className="container">
-            <div className="row justify-content-center">
-                <div className="col-6">
-                    <ToDoApp />
-                </div>
-            </div>
-        </div>
-    );
-};
-
-render(<App />, document.getElementById("root"));
+render(
+    <Router>
+        <App />
+    </Router>,
+    document.getElementById("root")
+);
