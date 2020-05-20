@@ -1,14 +1,14 @@
 import React, { FormEvent } from "react";
 
 interface Props {
-    onSubmit?: (e: FormEvent) => void;
+    onSubmit?: () => void;
 }
 
 const Form: React.FC<Props> = ({ children, onSubmit, ...otherProps }) => {
     const submitHandler = (e: FormEvent) => {
         if (onSubmit) {
             e.preventDefault();
-            onSubmit(e);
+            onSubmit();
         }
     };
     return (

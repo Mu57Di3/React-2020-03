@@ -1,7 +1,7 @@
 import React from "react";
 import { States } from "Constants/ToDo";
 import { ButtonColors } from "Constants/ui";
-import { StateBtn } from "../StateBtn";
+import { StateBtn } from "Components";
 import _ from "lodash";
 
 interface Props {
