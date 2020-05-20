@@ -16,3 +16,6 @@ export type Task = {
     state: States;
     label: string;
 };
+
+export const LOGIN_KEY = "login";
+export const USERS_LIST_KEY = "usersList";
