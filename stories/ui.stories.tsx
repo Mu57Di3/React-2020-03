@@ -1,9 +1,9 @@
 import React from "react";
-import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
+import { boolean, object, select, text, withKnobs } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button, ButtonGroup, EButton, EButtonGroup, ELinkButton, Input, LinkButton } from "UI";
-import { ButtonTypes, EButtonTypes } from "Constants/ui";
+import { Button, ButtonGroup, EButton, EButtonGroup, ELinkButton, FormGenerator, Input, LinkButton } from "UI";
+import { ButtonTypes, EButtonTypes, InputTypes } from "Constants/ui";
 import { useRef } from "@storybook/addons";
 
 export default {
@@ -132,4 +132,13 @@ export const UIInput: React.FC<{}> = () => {
     };
     const type = select("Тип контрола", typeOptions, "text");
     return <Input onChange={action("change")} type={type} ref={ref} />;
+};
+
+export const FormGeneratorStory: React.FC<{}> = () => {
+    const defaultConfig = [
+        { type: InputTypes.text, name: "field1", required: true, placeholder: "Введите что-нибудь" },
+        { type: InputTypes.date, name: "field2", placeholder: "Введите дату" },
+    ];
+    const config = object("Конфиг", defaultConfig);
+    return <FormGenerator controls={config} onSubmit={action("submit")} />;
 };

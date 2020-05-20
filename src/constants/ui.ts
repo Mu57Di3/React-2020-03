@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { MutableRefObject, ReactNode } from "react";
 
 /**
  * Размеры контролов формы
@@ -60,7 +60,14 @@ export enum EButtonTypes {
     "link" = "link",
 }
 
-export type InputTypes = "text" | "number" | "date" | "color" | "password" | "email";
+export enum InputTypes {
+    text = "text",
+    number = "number",
+    date = "date",
+    color = "color",
+    password = "password",
+    email = "email",
+}
 
 /**
  * Базовый интерфейс для компонентов
@@ -71,4 +78,24 @@ export interface BaseProps {
         | ((instance: HTMLInputElement | null) => void)
         | React.MutableRefObject<HTMLInputElement | null>
         | null;
+}
+
+export interface FormConfigItem {
+    type: InputTypes;
+    name?: string;
+    placeholder?: string;
+    required?: boolean;
+    ref?: React.MutableRefObject<HTMLInputElement>;
+}
+
+export interface FormItem {
+    type: InputTypes;
+    name: string;
+    placeholder?: string;
+    required?: boolean;
+    ref: React.MutableRefObject<HTMLInputElement> | React.MutableRefObject<null>;
+}
+
+export interface FormResultType {
+    [key: string]: string | number | boolean;
 }

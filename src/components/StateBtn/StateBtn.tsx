@@ -23,7 +23,6 @@ const StateBtn: React.FC<Props> = ({ state, click, color = ButtonColors.blue, di
     const clickHandler = (): void => {
         click();
     };
-    const classes = `btn btn-link ${color}`;
     return (
         <LinkButton textColor={color} disabled={disabled} onClick={clickHandler}>
             <FontAwesomeIcon icon={icons[state]} />

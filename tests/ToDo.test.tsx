@@ -1,10 +1,10 @@
 import React from "react";
 import { mount, render, shallow } from "enzyme";
 import { States, Task } from "Constants/ToDo";
-import { registerIcons } from "../src/tools";
-import { ToDoApp } from "../src/containers/ToDoApp";
+import { registerIcons } from "@/tools";
+import { ToDoApp } from "@/containers/ToDoApp";
 import { AddTask, StateBtn, TaskRow, getOffsetString } from "Components";
-import { TasksList } from "../src/containers/ToDoApp/components/TasksList";
+import { TasksList } from "@/containers/ToDoApp/components/TasksList";
 import { ButtonColors } from "Constants/ui";
 
 registerIcons();

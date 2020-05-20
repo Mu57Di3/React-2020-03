@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import Greeting from "../src/components/greeting";
+import { Greeting } from "Components";
 
 describe("Тест компонента Greeting", () => {
     it("Default", () => {
