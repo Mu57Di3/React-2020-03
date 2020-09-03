@@ -22,4 +22,4 @@ class ErrorWrapper extends Component {
     }
 }
 
-export {ErrorWrapper}
+export { ErrorWrapper };
