@@ -1,6 +1,6 @@
 import React from "react";
 import { withKnobs, text } from "@storybook/addon-knobs";
-import { Loader } from "../src/task_13";
+import { RandomApp } from "../src/task_13";
 
 export default {
     title: "random.org",
@@ -8,5 +8,5 @@ export default {
 };
 
 export const loader = () => {
-    return <Loader />;
+    return <RandomApp />;
 };
