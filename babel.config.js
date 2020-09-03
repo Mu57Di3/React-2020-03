@@ -4,12 +4,12 @@ module.exports = {
             "@babel/preset-env",
             {
                 targets: {
-                    node: "current"
+                    node: "current",
                 },
             },
         ],
         "@babel/preset-typescript",
         "@babel/preset-react",
     ],
-    plugins: ["emotion"],
+    plugins: ["emotion", "@babel/plugin-transform-runtime"],
 };

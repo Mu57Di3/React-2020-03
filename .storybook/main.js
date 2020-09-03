@@ -4,7 +4,7 @@ const custom = require("../webpack.config.js");
 const rules = require("../webpack.riles");
 
 module.exports = {
-    stories: ["../stories/**/*.stories.tsx"],
+    stories: ["../stories/**/*.stories.tsx", "../stories/**/*.stories.jsx"],
     addons: ["@storybook/addon-actions", "@storybook/addon-links", "@storybook/addon-knobs/register"],
     webpackFinal: (config) => {
         config.plugins.push(new webpack.HotModuleReplacementPlugin());
